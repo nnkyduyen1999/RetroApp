@@ -41,8 +41,10 @@ export default function ListBoards(props) {
               <Boards boardInfo={board} />
             </Col>
           ))}
+          
         </Row>
-        <button className="material-button shadow">
+        
+        <button className="material-button">
           <Media
             src={Icon}
             style={{ with: 30, height: 30, display: "inline-block" }}
