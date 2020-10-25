@@ -36,8 +36,8 @@ export default function ListBoards(props) {
           </Col>
         </Row>
         <Row className="mt-5">
-          {boardList.map((board) => (
-            <Col className="col-6 col-sm-4" key={board.id}>
+          {boardList.map((board, index) => (
+            <Col className="col-6 col-sm-4" key={index}>
               <Boards boardInfo={board} />
             </Col>
           ))}

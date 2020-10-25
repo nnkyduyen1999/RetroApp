@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody, CardTitle, Col, Button } from "reactstrap";
+import { Card, CardBody, CardTitle, Button } from "reactstrap";
 import "./Boards.css";
 
 export default function Boards({ boardInfo }) {

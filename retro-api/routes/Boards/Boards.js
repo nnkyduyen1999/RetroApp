@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const Boards = require("../../models/Boards/Boards");
 
 /* GET users listing. */
 const data = [
@@ -40,11 +41,27 @@ const data = [
     card: ["card1", "card2", "card 3"],
   },
 ];
-router.get("/", function (req, res, next) {
+
+router.get("/", async (req, res, next) => {
   try {
-     res.json(data);
-  } catch {
-    res.json({ message: err });
+    const boardFromDB = await Boards.find();
+    res.json(boardFromDB);
+  } catch (err) {
+    console.log(err);
+    res.send(err);
+  }
+});
+
+router.post("/", async (req, res, next) => {
+  const postBoard = new Boards({
+    name: req.body.name,
+    description: req.body.description,
+  });
+  try {
+    const savedBoard = await postBoard.save();
+    res.json(savedBoard);
+  } catch (err) {
+    res.send(err);
   }
 });
 
