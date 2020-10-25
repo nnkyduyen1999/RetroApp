@@ -12,3 +12,7 @@
     bottom: 8%;
     background-color: lightgray;
 }
+.material-button:hover {
+  transform: scale(1.09);
+}
+

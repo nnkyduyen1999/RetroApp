@@ -16,7 +16,7 @@ export default function Header() {
 
   return (
     <div>
-      <Navbar color="light" light expand="md">
+      <Navbar color="light" light expand="md" className="shadow-sm mb-5 py-3 rounded">
         <NavbarBrand href="/">Retro</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
