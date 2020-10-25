@@ -45,11 +45,12 @@ export default function ListBoards(props) {
         </Row>
         
         <button className="material-button">
-          <Media
+        <Media 
             src={Icon}
             style={{ with: 30, height: 30, display: "inline-block" }}
           />
         </button>
+        
       </Container>
     );
   }

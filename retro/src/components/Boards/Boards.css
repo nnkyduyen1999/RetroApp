@@ -11,6 +11,6 @@
     0 -6px 32px -6px hsla(0, 0%, 0%, 0.02);
 }
 
-.trash-btn:hover {
+.icon-btn:hover {
   transform: scale(1.2);
 }

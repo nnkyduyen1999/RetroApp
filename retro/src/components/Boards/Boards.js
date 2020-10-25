@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { Card, CardBody, CardTitle, Button, Media, Row, Col } from "reactstrap";
 import "./Boards.css";
-import TrashIcon from "../../icons/trash-can.png";
+import TrashIcon from "../../icons/trash.png";
+import CopyIcon from "../../icons/archives.png";
+import EditIcon from "../../icons/writing.png";
 
 export default function Boards({ boardInfo }) {
-  const [isDeleted, setIsDetected] = useState(false);
+  const [isDeleted, setIsDeleted] = useState(false);
+  const url = "/detail/" + boardInfo._id;
 
   return (
     <>
@@ -12,7 +15,17 @@ export default function Boards({ boardInfo }) {
         <Card className="mb-3 shadow-card">
           <CardBody className="text-left">
             <CardTitle className="text-monospace">
-              <h4>{boardInfo.name}</h4>
+              <Row>
+                <Col className="col-6 col-sm-10"><h4>{boardInfo.name}</h4></Col>
+                <Col className="col-6 col-sm-2">
+                <Media
+                      className="icon-btn"
+                      src={EditIcon}
+                      style={{ with: 30, height: 30, display: "inline-block" }}
+                      onClick={() => setIsDeleted(true)}
+                    />
+                </Col>
+              </Row>
             </CardTitle>
             <div className="card-body">
               <div
@@ -27,14 +40,27 @@ export default function Boards({ boardInfo }) {
             <hr />
             <Row>
               <Col className="col-6">
-                <Button href="/boards/detail">Board details</Button>
+                <Button href={url}>Board details</Button>
               </Col>
-              <Col className="col-6 d-flex justify-content-end">
-                <Media className="trash-btn"
-                  src={TrashIcon}
-                  style={{ with: 30, height: 30, display: "inline-block" }}
-                  onClick={() => setIsDetected(true)}
-                />
+              <Col className="col-6">
+                <Row className="d-flex justify-content-end">
+                  <Col className="col-6 col-sm-4">
+                    <Media
+                      className="icon-btn"
+                      src={CopyIcon}
+                      style={{ with: 30, height: 30, display: "inline-block" }}
+                      onClick={() => setIsDeleted(true)}
+                    />
+                  </Col>
+                  <Col className="col-6 col-sm-4">
+                    <Media
+                      className="icon-btn"
+                      src={TrashIcon}
+                      style={{ with: 30, height: 30, display: "inline-block" }}
+                      onClick={() => setIsDeleted(true)}
+                    />
+                  </Col>
+                </Row>
               </Col>
             </Row>
           </CardBody>
