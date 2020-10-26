@@ -13,6 +13,11 @@ const boardsRouter = require("./routes/Boards/Boards");
 
 const app = express();
 
+const corsOptions = {
+  origin: "https://retroo-app.herokuapp.com",
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+app.use(cors(corsOptions));
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
@@ -22,7 +27,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-app.use(cors());
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
@@ -45,7 +49,8 @@ app.use(function (err, req, res, next) {
 });
 
 //connect to db
-mongoose.connect(process.env.DB_CONNECTION, {
+mongoose
+  .connect(process.env.MONGODB_URL, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
   })
@@ -53,5 +58,7 @@ mongoose.connect(process.env.DB_CONNECTION, {
   .catch((err) => {
     console.log("DB Connection Error: ${err.message}");
   });
+
+
 
 module.exports = app;

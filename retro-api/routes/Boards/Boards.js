@@ -3,11 +3,13 @@ const router = express.Router();
 const Boards = require("../../models/Boards/Boards");
 
 router.get("/", async (req, res, next) => {
+  console.log("enter /boards");
   try {
     const boardFromDB = await Boards.find();
     res.json(boardFromDB);
   } catch (err) {
     console.log(err);
+    console.log("error");
     res.send(err);
   }
 });
