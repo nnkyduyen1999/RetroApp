@@ -10,7 +10,7 @@ export default function ListBoards(props) {
   const [boardList, setBoardList] = useState([]);
   const url = "https://retroo-api.herokuapp.com/boards";
   useEffect(() => {
-    fetch("http://localhost:3000/boards")
+    fetch(url)
       .then((res) => res.json())
       .then(
         (result) => {

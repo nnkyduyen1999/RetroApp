@@ -38,8 +38,8 @@ export default function Boards({ boardInfo }) {
                 {boardInfo.cards.length === 0 &&  <p className="float-right">No card</p>}
               </div>
               
-              {boardInfo.description.length < 70 && <p>{boardInfo.description}</p>}
-              {boardInfo.description.length >= 70 && <p>{boardInfo.description.slice(0, 60)}...</p>}
+              {boardInfo.description.length < 30 && <p>{boardInfo.description}</p>}
+              {boardInfo.description.length >= 30 && <p>{boardInfo.description.slice(0, 30)}...</p>}
             </div>
             <hr />
             <Row>
