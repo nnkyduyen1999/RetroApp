@@ -16,7 +16,8 @@ export default function Boards({ boardInfo }) {
           <CardBody className="text-left">
             <CardTitle className="text-monospace">
               <Row>
-                <Col className="col-6 col-sm-10"><h4>{boardInfo.name}</h4></Col>
+                {boardInfo.name.length < 20 && <Col className="col-6 col-sm-10"><h4>{boardInfo.name}</h4></Col>}
+                {boardInfo.name.length >= 20 && <Col className="col-6 col-sm-10"><h4>{boardInfo.name.slice(0, 15)} ...</h4></Col>}
                 <Col className="col-6 col-sm-2">
                 <Media
                       className="icon-btn"
@@ -32,10 +33,13 @@ export default function Boards({ boardInfo }) {
                 className="clearfix font-weight-light"
                 style={{ padding: ".5rem" }}
               >
-                <p className="float-left">14/06/2020</p>
-                <p className="float-right">{boardInfo.cards.length} cards</p>
+                <p className="float-left">{boardInfo.createDate}</p>
+                {boardInfo.cards.length > 0 &&  <p className="float-right">{boardInfo.cards.length} cards</p>}
+                {boardInfo.cards.length === 0 &&  <p className="float-right">No card</p>}
               </div>
-              <p>{boardInfo.description}</p>
+              
+              {boardInfo.description.length < 70 && <p>{boardInfo.description}</p>}
+              {boardInfo.description.length >= 70 && <p>{boardInfo.description.slice(0, 60)}...</p>}
             </div>
             <hr />
             <Row>

@@ -13,11 +13,11 @@ const boardsRouter = require("./routes/Boards/Boards");
 
 const app = express();
 
-const corsOptions = {
-  origin: "https://retroo-app.herokuapp.com",
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-};
-app.use(cors(corsOptions));
+// const corsOptions = {
+//   origin: "https://retroo-app.herokuapp.com",
+//   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+// };
+app.use(cors());
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
