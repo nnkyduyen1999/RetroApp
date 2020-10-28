@@ -55,6 +55,4 @@ mongoose
     console.log("DB Connection Error: ${err.message}");
   });
 
-
-
 module.exports = app;
