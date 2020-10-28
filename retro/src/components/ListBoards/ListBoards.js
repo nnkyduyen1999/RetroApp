@@ -10,7 +10,7 @@ export default function ListBoards(props) {
   const [boardList, setBoardList] = useState([]);
   const url = "https://retroo-api.herokuapp.com/boards";
   useEffect(() => {
-    fetch(url)
+    fetch("http://localhost:3000/boards")
       .then((res) => res.json())
       .then(
         (result) => {
@@ -50,7 +50,6 @@ export default function ListBoards(props) {
             style={{ with: 30, height: 30, display: "inline-block" }}
           />
         </button>
-        
       </Container>
     );
   }
