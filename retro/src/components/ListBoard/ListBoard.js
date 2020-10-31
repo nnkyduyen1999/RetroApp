@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Icon from "../../icons/add.png";
-import { Media, Container, Row, Col, Spinner } from "reactstrap";
-import "./ListBoards.css";
-import Boards from "../Boards/Boards";
+import { Container, Row, Col, Spinner } from "reactstrap";
+import Boards from "../Board/Board";
 
 export default function ListBoards(props) {
   const [error, setError] = useState(null);
@@ -50,13 +48,6 @@ export default function ListBoards(props) {
             </Col>
           ))}
         </Row>
-
-        <button className="material-button">
-          <Media
-            src={Icon}
-            style={{ with: 30, height: 30, display: "inline-block" }}
-          />
-        </button>
       </Container>
     );
   }

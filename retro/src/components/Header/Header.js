@@ -8,8 +8,11 @@ import {
   Navbar,
   NavbarToggler,
   NavbarText,
+  Media
 } from "reactstrap";
 import "./Header.css";
+import Icon from "../../icons/add.png";
+
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,6 +39,12 @@ export default function Header() {
           </a>
         </Collapse>
       </Navbar>
+      <button className="material-button">
+          <Media
+            src={Icon}
+            style={{ with: 30, height: 30, display: "inline-block" }}
+          />
+        </button>
     </div>
   );
 }

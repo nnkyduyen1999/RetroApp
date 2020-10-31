@@ -7,10 +7,9 @@ import {
   Media,
   Row,
   Col,
-  Form,
   Input,
 } from "reactstrap";
-import "./Boards.css";
+import "./Board.css";
 import TrashIcon from "../../icons/trash.png";
 import CopyIcon from "../../icons/archives.png";
 import EditIcon from "../../icons/writing.png";

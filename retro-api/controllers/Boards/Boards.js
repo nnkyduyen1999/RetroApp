@@ -14,7 +14,7 @@ module.exports.getAllBoards = async (req, res, next) => {
 module.exports.postBoard = async (req, res, next) => {
     const postBoard = new Boards({
         name: req.body.name,
-        description: req.body.description,
+        description: req.body.description ? req.body.description : '',
         createDate: Date.now(),
         cards: req.body.cards ? req.body.cards : [],
       });
