@@ -22,7 +22,7 @@ export default function BoardDetail({ match }) {
           setError(error);
         }
       );
-  }, []);
+  });
 
 
   if (error) {

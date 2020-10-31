@@ -15,7 +15,8 @@ module.exports.postBoard = async (req, res, next) => {
     const postBoard = new Boards({
         name: req.body.name,
         description: req.body.description,
-        cards: req.body.cards,
+        createDate: Date.now(),
+        cards: req.body.cards ? req.body.cards : [],
       });
       try {
         const savedBoard = await postBoard.save();

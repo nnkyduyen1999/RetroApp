@@ -1,5 +1,15 @@
 import React, { useState } from "react";
-import { Card, CardBody, CardTitle, Button, Media, Row, Col } from "reactstrap";
+import {
+  Card,
+  CardBody,
+  CardTitle,
+  Button,
+  Media,
+  Row,
+  Col,
+  Form,
+  Input,
+} from "reactstrap";
 import "./Boards.css";
 import TrashIcon from "../../icons/trash.png";
 import CopyIcon from "../../icons/archives.png";
@@ -7,7 +17,55 @@ import EditIcon from "../../icons/writing.png";
 
 export default function Boards({ boardInfo }) {
   const [isDeleted, setIsDeleted] = useState(false);
+  const [isUpdateClicked, setIsUpdateClicked] = useState(false);
+  const [newName, setNewName] = useState(boardInfo.name);
+  const { _id } = boardInfo;
+  const url = `http://localhost:3000/boards/${_id}`;
 
+  const handleOnChange = (event) => {
+    setNewName(event.target.value);
+  };
+
+  const handleEnterPress = (event) => {
+    if (event.keyCode === 13) {
+      let inputText = event.target.value;
+      inputText = inputText.trim();
+      if (inputText === "" || !inputText) {
+        return;
+      }
+      setNewName(inputText);
+      fetch(url, {
+        method: "PATCH", 
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({name: inputText}),
+      })
+        .then((response) => response.json())
+        .then(() => {
+          setIsUpdateClicked(false);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    }
+  };
+
+  const handleDeleteBtnPress = () => {
+    fetch(url, {
+      method: "DELETE", 
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+      .then((response) => response.json())
+      .then(() => {
+        setIsDeleted(true);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
   return (
     <>
       {!isDeleted && (
@@ -15,14 +73,30 @@ export default function Boards({ boardInfo }) {
           <CardBody className="text-left">
             <CardTitle className="text-monospace">
               <Row>
-                {boardInfo.name.length < 20 && (
-                  <Col className="col-6 col-sm-10">
-                    <h4>{boardInfo.name}</h4>
-                  </Col>
+                {!isUpdateClicked && (
+                  <>
+                    {newName.length < 20 && (
+                      <Col className="col-6 col-sm-10">
+                        <h4>{newName}</h4>
+                      </Col>
+                    )}
+                    {newName.length >= 20 && (
+                      <Col className="col-6 col-sm-10">
+                        <h4>{newName.slice(0, 15)} ...</h4>
+                      </Col>
+                    )}{" "}
+                  </>
                 )}
-                {boardInfo.name.length >= 20 && (
+
+                {isUpdateClicked && (
                   <Col className="col-6 col-sm-10">
-                    <h4>{boardInfo.name.slice(0, 15)} ...</h4>
+                    <Input
+                        type="text"
+                        name="name"
+                        value={newName}
+                        onChange={handleOnChange}
+                        onKeyUp={handleEnterPress}
+                      />
                   </Col>
                 )}
                 <Col className="col-6 col-sm-2">
@@ -30,7 +104,7 @@ export default function Boards({ boardInfo }) {
                     className="icon-btn"
                     src={EditIcon}
                     style={{ with: 30, height: 30, display: "inline-block" }}
-                    onClick={() => setIsDeleted(true)}
+                    onClick={() => setIsUpdateClicked(true)}
                   />
                 </Col>
               </Row>
@@ -76,7 +150,7 @@ export default function Boards({ boardInfo }) {
                       className="icon-btn"
                       src={TrashIcon}
                       style={{ with: 30, height: 30, display: "inline-block" }}
-                      onClick={() => setIsDeleted(true)}
+                      onClick={handleDeleteBtnPress}
                     />
                   </Col>
                 </Row>
