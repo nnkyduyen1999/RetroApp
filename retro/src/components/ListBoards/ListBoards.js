@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Icon from "../../icons/add.png";
-import { Media, Container, Row, Col } from "reactstrap";
+import { Media, Container, Row, Col, Spinner } from "reactstrap";
 import "./ListBoards.css";
 import Boards from "../Boards/Boards";
 
@@ -26,7 +26,15 @@ export default function ListBoards(props) {
   if (error) {
     return <div> Error: {error.message}</div>;
   } else if (!isLoaded) {
-    return <div>Loading ...</div>;
+    return (
+      <div className="d-flex justify-content-center">
+        <Spinner
+        style={{ width: "3rem", height: "3rem" }}
+        color="secondary"
+      />
+      </div>
+      
+    );
   } else {
     return (
       <Container className="ListBoards my-5">
@@ -41,11 +49,10 @@ export default function ListBoards(props) {
               <Boards boardInfo={board} />
             </Col>
           ))}
-          
         </Row>
-        
+
         <button className="material-button">
-        <Media 
+          <Media
             src={Icon}
             style={{ with: 30, height: 30, display: "inline-block" }}
           />

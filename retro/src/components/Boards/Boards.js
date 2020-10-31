@@ -59,7 +59,7 @@ export default function Boards({ boardInfo }) {
             <hr />
             <Row>
               <Col className="col-6">
-                <Button href={`/boards/${boardInfo._id}`}>Go</Button>
+                <Button href={`/boards/${boardInfo._id}`}>See more</Button>
               </Col>
               <Col className="col-6">
                 <Row className="d-flex justify-content-end">
