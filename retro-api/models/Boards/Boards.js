@@ -3,20 +3,11 @@ const mongoose = require('mongoose');
 const BoardSchema = mongoose.Schema({
     name: String,
     description: String,
-    createDate: {
-        type: Date,
-        default: Date.now
-    },
+    createDate: String,
     cards: [
         {
             name: String, 
-            columnType: String,
-            comments: [ 
-                {
-                    content: String,
-                    isDeleted: Boolean
-                }
-            ]
+            columnType: String
         }
     ]
 });

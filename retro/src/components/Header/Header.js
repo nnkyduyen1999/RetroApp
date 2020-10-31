@@ -22,15 +22,17 @@ export default function Header() {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink href="#">Dashboard</NavLink>
+              <NavLink href="/boards">Dashboard</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="#">
+              <NavLink href="/teams">
                 Teams
               </NavLink>
             </NavItem>
           </Nav>
+          <a href="/profile">
           <NavbarText>Profile</NavbarText>
+          </a>
         </Collapse>
       </Navbar>
     </div>
