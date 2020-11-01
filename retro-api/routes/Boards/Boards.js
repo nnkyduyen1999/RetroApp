@@ -15,6 +15,8 @@ router.delete("/:id", boardControllers.deleteBoard);
 
 router.patch("/:id", boardControllers.updateBoard);
 
+router.post("/add-cards/:id", boardControllers.addCards);
+
 router.get("/:id", boardControllers.getBoardByID);
 
 module.exports = router;

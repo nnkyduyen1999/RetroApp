@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Col, Row } from "reactstrap";
 import "./BoardDetail.css";
 import AddCards from "./AddCards.js";

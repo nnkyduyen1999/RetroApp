@@ -17,7 +17,7 @@ module.exports.getAllBoards = async (req, res, next) => {
 module.exports.postBoard = async (req, res, next) => {
   const postBoard = new Boards({
     name: req.body.name,
-    description: req.body.description ? req.body.description : "",
+    description: req.body.description ? req.body.description : "No description",
     createDate: Date.now(),
     cards: req.body.cards ? req.body.cards : [],
   });
@@ -43,26 +43,10 @@ module.exports.getBoardByID = async (req, res, next) => {
 
 module.exports.updateBoard = async (req, res, next) => {
   try {
-    // const { cards } = req.body;
-    // if (!cards) {
-    //   const addedCard = {
-    //     id: autoSetIdCard,
-    //     name: cards.name,
-    //     columnType: cards.columnType ? cards.columnType : "A",
-    //   };
-    //   const boardWithCards = await Boards.findOneAndUpdate(
-    //     { _id: req.params.id },
-    //     { $push: { cards: addedCard } },
-    //     { upsert: true }
-    //   );
-    // } else {
-      const updateBoard = await Boards.findByIdAndUpdate(
-        req.params.id,
-        req.body
-      );
-      if (!updateBoard) {
-        throw new Error("Board not found");
-      }
+    const updateBoard = await Boards.findByIdAndUpdate(req.params.id, req.body);
+    if (!updateBoard) {
+      throw new Error("Board not found");
+    }
     res.send({ success: true });
   } catch (err) {
     res.send(err);
@@ -76,6 +60,25 @@ module.exports.deleteBoard = async (req, res, next) => {
       throw new Error("Board not found");
     }
     res.send({ success: true });
+  } catch (err) {
+    res.send(err);
+  }
+};
+
+module.exports.addCards = async (req, res, next) => {
+  try {
+    const addedCard = {
+      id: autoSetIdCard,
+      name: req.body.name,
+      columnType: req.body.columnType ? req.body.columnType : "A",
+    };
+
+    const boardWithCards = await Boards.findOneAndUpdate(
+      { _id: req.params.id },
+      { $push: { cards: addedCard } },
+      { upsert: true }
+    );
+    res.send({ success: true});
   } catch (err) {
     res.send(err);
   }
