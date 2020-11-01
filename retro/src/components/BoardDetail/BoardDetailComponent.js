@@ -29,18 +29,18 @@ export default function BoardDetailComponent({ boardDetail }) {
           <div className="header">Went well</div>
           {cardsColA.length > 0 && <ul>{renderListCard(cardsColA)}</ul>}
 
-          <AddCards />
+          <AddCards column="A" boardId={boardDetail._id}/>
         </Col>
         <Col className="col-3 list-wrapper">
           <div className="header">To improve</div>
           {cardsColB.length > 0 && <ul>{renderListCard(cardsColB)}</ul>}
 
-          <AddCards />
+          <AddCards column="B" boardId={boardDetail._id}/>
         </Col>
         <Col className="col-3 list-wrapper">
           <div className="header">Action Items</div>
           {cardsColC.length > 0 && <ul>{renderListCard(cardsColC)}</ul>}
-          <AddCards />
+          <AddCards column="C" boardId={boardDetail._id}/>
         </Col>
       </Row>
     </div>

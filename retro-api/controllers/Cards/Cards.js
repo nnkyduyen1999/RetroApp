@@ -6,7 +6,7 @@ module.exports.updateCard = async (req, res, next) => {
   const cardId = mongoose.Types.ObjectId(req.params.idCard);
   try {
     const updatedBoard = await Boards.findOneAndUpdate(
-      { _id: req.params.idBoard, "cards.id": cardId },
+      { _id: req.params.idBoard, "cards._id": cardId },
       {
         $set: {
           "cards.$.name": req.body.name,
@@ -29,7 +29,7 @@ module.exports.deleteCard = async (req, res, next) => {
     const deleteCard = await Boards.update(
       { _id: req.params.idBoard},
       {$pull: {
-          cards: {id: cardId}
+          cards: {_id: cardId}
       }},
       {multi: true}
     );

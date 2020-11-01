@@ -16,12 +16,12 @@ export default function Card({ cardInfo, boardId }) {
   const [isDeletedCard, setIsDeletedCard] = useState(false);
   const url = `http://localhost:3000/boards/${boardId}/${cardId}`;
 
-  const toggle = (card) => {
-    setCardId(card.id);
+  const toggle = () => {
+    setCardId(cardInfo._id);
     if (cardName !== "") {
       setCardName(cardName);
     } else {
-      setCardName(card.name);
+      setCardName(cardInfo.name);
     }
     setModal(!modal);
   };
@@ -81,8 +81,8 @@ export default function Card({ cardInfo, boardId }) {
         {cardName && (
           <li
             className="card"
-            key={cardInfo.id}
-            onClick={() => toggle(cardInfo)}
+            key={cardInfo._id}
+            onClick={toggle}
           >
             {cardName}
           </li>
@@ -90,8 +90,8 @@ export default function Card({ cardInfo, boardId }) {
         {!cardName && (
           <li
             className="card"
-            key={cardInfo.id}
-            onClick={() => toggle(cardInfo)}
+            key={cardInfo._id}
+            onClick={toggle}
           >
             {cardInfo.name}
           </li>
