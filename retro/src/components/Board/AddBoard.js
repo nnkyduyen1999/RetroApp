@@ -61,7 +61,7 @@ export default function AddBoard() {
         <ModalFooter>
           <Button color="success" onClick={submitBoard}>
             Create
-          </Button>{" "}
+          </Button>
           <Button color="danger" onClick={toggle}>
             Cancel
           </Button>

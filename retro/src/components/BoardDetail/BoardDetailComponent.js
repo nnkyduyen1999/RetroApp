@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Col, Row, Media } from "reactstrap";
+import { Col, Row } from "reactstrap";
 import "./BoardDetail.css";
 import AddCards from "./AddCards.js";
+import Card from "../Card/Card";
+//import EditIcon from "../../icons/edit-button.png";
 
 export default function BoardDetailComponent({ boardDetail }) {
   const { cards } = boardDetail;
@@ -10,7 +12,9 @@ export default function BoardDetailComponent({ boardDetail }) {
   const cardsColC = cards.filter((card) => card.columnType === "C");
 
   const renderListCard = (listCard) => {
-    return listCard.map((card, index) => <li key={index}>{card.name}</li>);
+    return listCard.map((card) => {
+      return <Card cardInfo={card} boardId={boardDetail._id} />;
+    });
   };
 
   return (

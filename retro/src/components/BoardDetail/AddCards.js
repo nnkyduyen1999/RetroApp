@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Textarea, Form, Button, Media } from "reactstrap";
+import { Form, Button, Media } from "reactstrap";
 import "./BoardDetail.css";
 import PlusIcon from "../../icons/add.png";
 
