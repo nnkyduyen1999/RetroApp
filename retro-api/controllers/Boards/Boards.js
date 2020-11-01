@@ -43,19 +43,19 @@ module.exports.getBoardByID = async (req, res, next) => {
 
 module.exports.updateBoard = async (req, res, next) => {
   try {
-    const { cards } = req.body;
-    if (!cards) {
-      const addedCard = {
-        id: autoSetIdCard,
-        name: cards.name,
-        columnType: cards.columnType ? cards.columnType : "A",
-      };
-      const boardWithCards = await Boards.findOneAndUpdate(
-        { _id: req.params.id },
-        { $push: { cards: addedCard } },
-        { upsert: true }
-      );
-    } else {
+    // const { cards } = req.body;
+    // if (!cards) {
+    //   const addedCard = {
+    //     id: autoSetIdCard,
+    //     name: cards.name,
+    //     columnType: cards.columnType ? cards.columnType : "A",
+    //   };
+    //   const boardWithCards = await Boards.findOneAndUpdate(
+    //     { _id: req.params.id },
+    //     { $push: { cards: addedCard } },
+    //     { upsert: true }
+    //   );
+    // } else {
       const updateBoard = await Boards.findByIdAndUpdate(
         req.params.id,
         req.body
@@ -63,7 +63,6 @@ module.exports.updateBoard = async (req, res, next) => {
       if (!updateBoard) {
         throw new Error("Board not found");
       }
-    }
     res.send({ success: true });
   } catch (err) {
     res.send(err);

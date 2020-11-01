@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Col, Row, Media } from "reactstrap";
-import PlusIcon from "../../icons/add.png";
 import "./BoardDetail.css";
+import AddCards from "./AddCards.js";
 
 export default function BoardDetailComponent({ boardDetail }) {
   const { cards } = boardDetail;
@@ -25,63 +25,18 @@ export default function BoardDetailComponent({ boardDetail }) {
           <div className="header">Went well</div>
           {cardsColA.length > 0 && <ul>{renderListCard(cardsColA)}</ul>}
 
-          <div className="footer">
-            <Media>
-              <Media left>
-                <Media
-                  src={PlusIcon}
-                  style={{
-                    width: 15,
-                    height: 15,
-                    display: "inline-block",
-                    marginRight: 5,
-                  }}
-                />
-              </Media>
-              <Media>Add card ...</Media>
-            </Media>
-          </div>
+          <AddCards />
         </Col>
         <Col className="col-3 list-wrapper">
           <div className="header">To improve</div>
           {cardsColB.length > 0 && <ul>{renderListCard(cardsColB)}</ul>}
 
-          <div className="footer">
-            <Media>
-              <Media left>
-                <Media
-                  src={PlusIcon}
-                  style={{
-                    width: 15,
-                    height: 15,
-                    display: "inline-block",
-                    marginRight: 5,
-                  }}
-                />
-              </Media>
-              <Media>Add card ...</Media>
-            </Media>
-          </div>
+          <AddCards />
         </Col>
         <Col className="col-3 list-wrapper">
           <div className="header">Action Items</div>
           {cardsColC.length > 0 && <ul>{renderListCard(cardsColC)}</ul>}
-          <div className="footer">
-            <Media>
-              <Media left>
-                <Media
-                  src={PlusIcon}
-                  style={{
-                    width: 15,
-                    height: 15,
-                    display: "inline-block",
-                    marginRight: 5,
-                  }}
-                />
-              </Media>
-              <Media><a>Add card ...</a></Media>
-            </Media>
-          </div>
+          <AddCards />
         </Col>
       </Row>
     </div>
