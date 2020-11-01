@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Spinner } from "reactstrap";
 import BoardDetailComponent from "./BoardDetailComponent";
 
-
 export default function BoardDetail({ match }) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -24,7 +23,6 @@ export default function BoardDetail({ match }) {
       );
   });
 
-
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
@@ -35,10 +33,10 @@ export default function BoardDetail({ match }) {
     );
   } else {
     return (
-       <>
-       {!item.cards && <h1>No cards</h1>}
-       {item.cards && <BoardDetailComponent boardDetail={item}/>}
-       </>
+      <>
+        {!item.cards && <h1>No cards</h1>}
+        {item.cards && <BoardDetailComponent boardDetail={item} />}
+      </>
     );
   }
 }

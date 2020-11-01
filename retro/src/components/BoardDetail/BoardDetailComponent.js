@@ -31,14 +31,14 @@ export default function BoardDetailComponent({ boardDetail }) {
                 <Media
                   src={PlusIcon}
                   style={{
-                    width: 16,
-                    height: 16,
+                    width: 15,
+                    height: 15,
                     display: "inline-block",
                     marginRight: 5,
                   }}
                 />
               </Media>
-              <Media body>Add card ...</Media>
+              <Media>Add card ...</Media>
             </Media>
           </div>
         </Col>
@@ -52,14 +52,14 @@ export default function BoardDetailComponent({ boardDetail }) {
                 <Media
                   src={PlusIcon}
                   style={{
-                    width: 16,
-                    height: 16,
+                    width: 15,
+                    height: 15,
                     display: "inline-block",
                     marginRight: 5,
                   }}
                 />
               </Media>
-              <Media body>Add card ...</Media>
+              <Media>Add card ...</Media>
             </Media>
           </div>
         </Col>
@@ -72,14 +72,14 @@ export default function BoardDetailComponent({ boardDetail }) {
                 <Media
                   src={PlusIcon}
                   style={{
-                    width: 16,
-                    height: 16,
+                    width: 15,
+                    height: 15,
                     display: "inline-block",
                     marginRight: 5,
                   }}
                 />
               </Media>
-              <Media body>Add card ...</Media>
+              <Media><a>Add card ...</a></Media>
             </Media>
           </div>
         </Col>

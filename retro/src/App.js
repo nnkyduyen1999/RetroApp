@@ -1,4 +1,3 @@
-import "./App.css";
 import Header from "./components/Header/Header";
 import ListBoards from "./components/ListBoard/ListBoard";
 import Profile from "./components/Profile/Profile";

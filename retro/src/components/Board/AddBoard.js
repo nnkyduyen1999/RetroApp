@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Media,
   Modal,
@@ -6,7 +6,6 @@ import {
   ModalBody,
   Button,
   ModalFooter,
-  Form,
   Input,
 } from "reactstrap";
 import "./AddBoard.css";
