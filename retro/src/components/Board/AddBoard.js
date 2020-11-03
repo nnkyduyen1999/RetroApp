@@ -24,7 +24,7 @@ export default function AddBoard() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name: value}),
+      body: JSON.stringify({ name: value }),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -50,13 +50,13 @@ export default function AddBoard() {
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Add new board</ModalHeader>
         <ModalBody>
-            <Input
-              type="text"
-              name="name"
-              value={value}
-              onChange={handleChange}
-              placeholder="Type board name ..."
-            />
+          <Input
+            type="text"
+            name="name"
+            value={value}
+            onChange={handleChange}
+            placeholder="Type board name ..."
+          />
         </ModalBody>
         <ModalFooter>
           <Button color="success" onClick={submitBoard}>

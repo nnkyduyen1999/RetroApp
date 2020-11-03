@@ -1,4 +1,4 @@
-const Boards = require("../../models/Boards/Boards");
+const Boards = require("../models/Boards");
 const mongoose = require("mongoose");
 
 const autoSetIdCard = mongoose.ObjectId;

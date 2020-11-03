@@ -7,14 +7,11 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 require("dotenv/config");
 
-const boardsRouter = require("./routes/Boards/Boards");
+const boardsRouter = require("./routes/Boards");
 
 const app = express();
 
-// const corsOptions = {
-//   origin: "https://retroo-app.herokuapp.com",
-//   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-// };
+
 app.use(cors());
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -32,6 +29,10 @@ app.use("/boards", boardsRouter);
 app.use(function (req, res, next) {
   next(createError(404));
 });
+
+app.get('/', (req, res) => {
+  res.render('./views/index.hbs');
+})
 
 // error handler
 app.use(function (err, req, res, next) {
