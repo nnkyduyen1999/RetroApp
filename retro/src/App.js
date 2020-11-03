@@ -18,6 +18,7 @@ function App() {
           <ProtectedRoute path="/teams" exact component={Teams} />
           <ProtectedRoute path="/boards" exact component={ListBoards} />
           <ProtectedRoute path="/boards/:id" component={BoardDetail} />
+          <Route path="*" component={() => "404 NOT FOUND"} />
         </Switch>
     </Router>
   );

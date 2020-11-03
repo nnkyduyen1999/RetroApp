@@ -1,0 +1,94 @@
+.auth-bgr {
+  background: #8e9eab;
+  background: -webkit-linear-gradient(to bottom, #eef2f3, #8e9eab);
+  background: linear-gradient(to bottom, #eef2f3, #8e9eab);
+  height: 100vh;
+}
+
+.txt-color {
+    color: #b993d6;
+}
+
+.sign-form {
+  text-transform: uppercase;
+  background: whitesmoke;
+  border-radius: 10px;
+  height: 75vh;
+}
+
+.sign-form .non-border {
+  border: none;
+  background-color: inherit;
+}
+
+Input:focus {
+  outline: none;
+}
+
+.sign-bgr {
+  background-image: linear-gradient(
+    to left,
+    #b993d6 0%,
+    #8ca6db 51%,
+    #b993d6 100%
+  );
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 0 10px 10px 0;
+  display: block;
+  height: 50vh;
+  width: 60vh;
+  text-transform: none;
+}
+
+.btn-grad {
+  background-image: linear-gradient(
+    to right,
+    #b993d6 0%,
+    #8ca6db 51%,
+    #b993d6 100%
+  );
+}
+.btn-grad {
+  margin: 10px;
+  padding: 8px 35px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 30px;
+  display: block;
+}
+
+.btn-grad:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
+.sign-in-btn { 
+    background-image: linear-gradient(
+    to right,
+    #b993d6 0%,
+    #8ca6db 51%,
+    #b993d6 100%
+  );
+    margin: 10px;
+    padding: 8px;
+    text-align: center;
+    text-transform: uppercase;
+    background-size: 200% auto;
+    color: white;
+    border-radius: 30px !important;
+    border-color: white !important;
+    display: block;
+}
+
+

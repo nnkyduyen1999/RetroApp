@@ -30,8 +30,28 @@ export default function LogIn() {
 
   return (
     <div>
-      <p>You must log in to view the page at {from.pathname}</p>
-      <button onClick={login}>Log in</button>
+      {/* <p>You must log in to view the page at {from.pathname}</p> */}
+      <div className="auth-bgr d-flex align-items-center">
+      <Row className="w-75 mx-auto py-5 d-flex align-items-center">
+        <Col className="col-sm-6 col-12 pr-0">
+          <div className="sign-form px-5">
+            <h2 className="py-5 txt-color">LOG IN</h2>
+            <Input placeholder="username" className="my-2 non-border" />
+            <Input placeholder="password" className="my-2 non-border" />
+            <div className="d-flex justify-content-end">
+              <button className="btn-grad" onClick={login}>LOG IN</button>
+            </div>
+          </div>
+        </Col>
+        <Col className="col-sm-6 col-12 pl-0">
+          <div className="sign-bgr d-flex flex-column pt-5">
+            <h2>Newbie,</h2>
+            <p>Create your account now</p>
+            <Button className="sign-in-btn" href="/register">REGISTER</Button>
+          </div>
+        </Col>
+      </Row>
+    </div>
     </div>
   );
 }
