@@ -8,6 +8,9 @@ const mongoose = require("mongoose");
 require("dotenv/config");
 
 const boardsRouter = require("./routes/Boards");
+const authRouter = require("./routes/Auth");
+const authMiddleware = require("./routes/VerifyToken");
+
 
 const app = express();
 
@@ -23,7 +26,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/boards", boardsRouter);
+app.use("/boards", authMiddleware.verifyToken, boardsRouter);
+app.use("/", authRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
