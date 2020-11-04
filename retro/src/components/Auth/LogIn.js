@@ -1,13 +1,38 @@
-import React from "react";
+import React, {useState} from "react";
 import "./Auth.css";
 import { Input, Row, Col, Button } from "reactstrap";
 import {
+  Redirect,
   useHistory,
-  useLocation
+  useLocation,
 } from "react-router-dom";
 export default function LogIn() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const url = `http://localhost:3000/register`;
+
   let history = useHistory();
   let location = useLocation();
+
+  const submitUser = () => {
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
 
   const fakeAuth = {
     isAuthenticated: false,
