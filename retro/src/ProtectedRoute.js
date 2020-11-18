@@ -4,23 +4,13 @@ import AddBoard from "./components/Board/AddBoard";
 import Header from "./components/Header/Header";
 
 export default function ProtectedRoute({ component: Component, ...rest }) {
-  const fakeAuth = {
-    isAuthenticated: false,
-    authenticate(cb) {
-      fakeAuth.isAuthenticated = true;
-      setTimeout(cb, 100); // fake async
-    },
-    signout(cb) {
-      fakeAuth.isAuthenticated = false;
-      setTimeout(cb, 100);
-    },
-  };
+  const localUser = JSON.parse(localStorage.getItem("loggedIn"));
 
   return (
     <Route
       {...rest}
       render={(props) => {
-        if (fakeAuth.authenticate) {
+        if (localUser) {
           return (
             <div>
               <Header />
@@ -32,7 +22,7 @@ export default function ProtectedRoute({ component: Component, ...rest }) {
           return (
             <Redirect
               to={{
-                pathname: "/",
+                pathname: "/login",
                 state: {
                   from: props.location,
                 },

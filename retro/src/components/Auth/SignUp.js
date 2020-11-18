@@ -41,7 +41,7 @@ export default function SignUp() {
         <div className="auth-bgr d-flex flex-column align-items-center">
           {error && <Row>
             <div class="alert alert-danger mt-3" role="alert">
-              {error}
+              Error
             </div>
           </Row>}
           <Row className="w-75 mx-auto py-5 d-flex align-items-center">
