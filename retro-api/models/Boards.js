@@ -9,7 +9,8 @@ const BoardSchema = mongoose.Schema({
             name: String, 
             columnType: String
         }
-    ]
+    ],
+    owner: String
 });
 
-module.exports = mongoose.model('Boards', BoardSchema);
+module.exports = mongoose.model('boards', BoardSchema);

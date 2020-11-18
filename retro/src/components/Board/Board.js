@@ -21,6 +21,8 @@ export default function Boards({ boardInfo }) {
   const { _id } = boardInfo;
   const url = `http://localhost:3000/boards/${_id}`;
 
+  const localUser = JSON.parse(localStorage.getItem("loggedIn"));
+
   const handleOnChange = (event) => {
     setNewName(event.target.value);
   };
@@ -37,6 +39,7 @@ export default function Boards({ boardInfo }) {
         method: "PATCH", 
         headers: {
           "Content-Type": "application/json",
+          "auth-token": localUser.token,
         },
         body: JSON.stringify({name: inputText}),
       })
@@ -55,6 +58,7 @@ export default function Boards({ boardInfo }) {
       method: "DELETE", 
       headers: {
         "Content-Type": "application/json",
+        "auth-token": localUser.token,
       }
     })
       .then((response) => response.json())

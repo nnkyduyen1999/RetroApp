@@ -13,6 +13,8 @@ export default function AddCard({ column, boardId }) {
   const [addSucceeded, setaddSucceeded] = useState(false);
   const url = `http://localhost:3000/boards/add-cards/${boardId}`;
 
+  const localUser = JSON.parse(localStorage.getItem("loggedIn"));
+
   const handleChange = (event) => {
     setNewCardInfo({ 
       name: event.target.value,
@@ -25,6 +27,7 @@ export default function AddCard({ column, boardId }) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "auth-token": localUser.token,
       },
       body: JSON.stringify(newCardInfo),
     })

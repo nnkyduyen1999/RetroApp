@@ -18,13 +18,16 @@ export default function AddBoard() {
   const [value, setValue] = useState("");
   const url = `http://localhost:3000/boards`;
 
+  const localUser = JSON.parse(localStorage.getItem("loggedIn"));
+
   const submitBoard = () => {
     fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "auth-token": localUser.token
       },
-      body: JSON.stringify({ name: value }),
+      body: JSON.stringify({ name: value, idUser: localUser._id }),
     })
       .then((response) => response.json())
       .then((data) => {

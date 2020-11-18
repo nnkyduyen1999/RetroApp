@@ -16,6 +16,8 @@ export default function Card({ cardInfo, boardId }) {
   const [isDeletedCard, setIsDeletedCard] = useState(false);
   const url = `http://localhost:3000/boards/${boardId}/${cardId}`;
 
+  const localUser = JSON.parse(localStorage.getItem("loggedIn"));
+
   const toggle = () => {
     setCardId(cardInfo._id);
     if (cardName !== "") {
@@ -40,6 +42,7 @@ export default function Card({ cardInfo, boardId }) {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
+        "auth-token": localUser.token,
       },
       body: JSON.stringify({ name: inputText }),
     })
@@ -60,6 +63,7 @@ export default function Card({ cardInfo, boardId }) {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
+        "auth-token": localUser.token,
       },
     })
       .then((response) => response.json())

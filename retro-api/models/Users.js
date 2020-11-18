@@ -10,4 +10,4 @@ const UserSchema = Schema({
         default: Date.now,
     }
 });
-module.exports = model('Users', UserSchema);
+module.exports = model('users', UserSchema);

@@ -5,7 +5,8 @@ const autoSetIdCard = mongoose.ObjectId;
 
 module.exports.getAllBoards = async (req, res, next) => {
   try {
-    const boardFromDB = await Boards.find();
+    const userId = req.header('x-user-id');
+    const boardFromDB = await Boards.find({owner: userId});
     res.json(boardFromDB);
   } catch (err) {
     res.send(err);
@@ -18,6 +19,7 @@ module.exports.postBoard = async (req, res, next) => {
     description: req.body.description ? req.body.description : "No description",
     createDate: Date.now(),
     cards: req.body.cards ? req.body.cards : [],
+    owner: req.body.idUser
   });
   try {
     const savedBoard = await postBoard.save();

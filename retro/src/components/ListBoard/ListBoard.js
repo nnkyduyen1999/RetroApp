@@ -7,14 +7,14 @@ export default function ListBoards(props) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [boardList, setBoardList] = useState([]);
   const localUser = JSON.parse(localStorage.getItem("loggedIn"));
- // const url = "https://retroo-api.herokuapp.com/boards";
+  // const url = "https://retroo-api.herokuapp.com/boards";
   useEffect(() => {
     fetch("http://localhost:3000/boards", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
         "auth-token": localUser.token,
-        "_id": localUser._id
+        "x-user-id": localUser._id,
       },
     })
       .then((res) => res.json())
@@ -34,12 +34,8 @@ export default function ListBoards(props) {
   } else if (!isLoaded) {
     return (
       <div className="d-flex justify-content-center">
-        <Spinner
-        style={{ width: "3rem", height: "3rem" }}
-        color="secondary"
-      />
+        <Spinner style={{ width: "3rem", height: "3rem" }} color="secondary" />
       </div>
-      
     );
   } else {
     return (
@@ -50,20 +46,21 @@ export default function ListBoards(props) {
           </Col>
         </Row>
         <>
-        {
-          !boardList && <div class="alert alert-danger" role="alert">
-          No board
-        </div> 
-        }
-        {boardList && <Row className="mt-5">
-          {boardList.map((board, index) => (
-            <Col className="col-6 col-sm-4" key={index}>
-              <Boards boardInfo={board} />
-            </Col>
-          ))}
-        </Row>}
+          {boardList.length === 0 && (
+            <div class="alert alert-danger" role="alert">
+              No board
+            </div>
+          )}
+          {boardList.length > 0 && (
+            <Row className="mt-5">
+              {boardList.map((board, index) => (
+                <Col className="col-6 col-sm-4" key={index}>
+                  <Boards boardInfo={board} />
+                </Col>
+              ))}
+            </Row>
+          )}
         </>
-        
       </Container>
     );
   }

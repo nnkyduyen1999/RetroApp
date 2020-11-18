@@ -11,6 +11,6 @@ module.exports.verifyToken = (req, res, next) => {
         req.user = verifier;
         next();
     } catch (err) {
-        res.status.send('Invalid token');
+        res.send('Invalid token');
     }
 }

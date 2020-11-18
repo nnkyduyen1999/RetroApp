@@ -6,10 +6,18 @@ export default function BoardDetail({ match }) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [item, setItem] = useState({});
+  const localUser = JSON.parse(localStorage.getItem("loggedIn"));
 
   const url = `http://localhost:3000/boards/${match.params.id}`;
   useEffect(() => {
-    fetch(url)
+    fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": localUser.token,
+        "_id": localUser._id
+      },
+    })
       .then((res) => res.json())
       .then(
         (result) => {
