@@ -1,20 +1,17 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "./Auth.css";
 import { Input, Row, Col, Button } from "reactstrap";
-import {
-  Redirect,
-  useHistory,
-  useLocation,
-} from "react-router-dom";
+import { Redirect } from "react-router-dom";
+
 export default function LogIn() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const url = `http://localhost:3000/register`;
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [error, setError] = useState("");
 
-  let history = useHistory();
-  let location = useLocation();
+  const url = `http://localhost:3000/login`;
 
-  const submitUser = () => {
+  const login = () => {
     fetch(url, {
       method: "POST",
       headers: {
@@ -22,61 +19,79 @@ export default function LogIn() {
       },
       body: JSON.stringify({
         username: username,
-        password: password
+        password: password,
       }),
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Success:", data);
+        setIsLoggedIn(true);
+        localStorage.setItem(
+          "loggedIn",
+          JSON.stringify({
+            loggedIn: true,
+            token: data.token,
+            _id: data._id,
+          })
+        );
+        setIsLoggedIn(!isLoggedIn);
       })
       .catch((error) => {
-        console.error("Error:", error);
+        setError(error);
       });
   };
 
-  const fakeAuth = {
-    isAuthenticated: false,
-    authenticate(cb) {
-      fakeAuth.isAuthenticated = true;
-      setTimeout(cb, 100); // fake async
-    },
-    signout(cb) {
-      fakeAuth.isAuthenticated = false;
-      setTimeout(cb, 100);
-    }
-  };
-  let { from } = location.state || { from: { pathname: "/" } };
-  let login = () => {
-    fakeAuth.authenticate(() => {
-      history.replace(from);
-    });
-  };
-
-
   return (
-    <div>
-      {/* <p>You must log in to view the page at {from.pathname}</p> */}
-      <div className="auth-bgr d-flex align-items-center">
-      <Row className="w-75 mx-auto py-5 d-flex align-items-center">
-        <Col className="col-sm-6 col-12 pr-0">
-          <div className="sign-form px-5">
-            <h2 className="py-5 txt-color">LOG IN</h2>
-            <Input placeholder="username" className="my-2 non-border" />
-            <Input placeholder="password" className="my-2 non-border" />
-            <div className="d-flex justify-content-end">
-              <button className="btn-grad" onClick={login}>LOG IN</button>
-            </div>
-          </div>
-        </Col>
-        <Col className="col-sm-6 col-12 pl-0">
-          <div className="sign-bgr d-flex flex-column pt-5">
-            <h2>Newbie,</h2>
-            <p>Create your account now</p>
-            <Button className="sign-in-btn" href="/register">REGISTER</Button>
-          </div>
-        </Col>
-      </Row>
-    </div>
-    </div>
+    <>
+      {isLoggedIn ? (
+        <Redirect to="/boards" />
+      ) : (
+        <div className="auth-bgr d-flex  align-items-center">
+          {error && (
+            <Row>
+              <div class="alert alert-danger mt-3" role="alert">
+                {error}
+              </div>
+            </Row>
+          )}
+          <Row className="w-75 mx-auto py-5 d-flex align-items-center">
+            <Col className="col-sm-6 col-12 pr-0">
+              <div className="sign-form px-5">
+                <h2 className="py-5 txt-color">LOG IN</h2>
+                <Input
+                  placeholder="username"
+                  name="username"
+                  onChange={(event) => {
+                    setUsername(event.target.value);
+                  }}
+                  className="my-2 non-border"
+                />
+                <Input
+                  placeholder="password"
+                  name="password"
+                  onChange={(event) => {
+                    setPassword(event.target.value);
+                  }}
+                  className="my-2 non-border"
+                />
+                <div className="d-flex justify-content-end">
+                  <button className="btn-grad" onClick={login}>
+                    LOG IN
+                  </button>
+                </div>
+              </div>
+            </Col>
+            <Col className="col-sm-6 col-12 pl-0">
+              <div className="sign-bgr d-flex flex-column pt-5">
+                <h2>Newbie,</h2>
+                <p>Create your account now</p>
+                <Button className="sign-in-btn" href="/register">
+                  REGISTER
+                </Button>
+              </div>
+            </Col>
+          </Row>
+        </div>
+      )}
+    </>
   );
 }

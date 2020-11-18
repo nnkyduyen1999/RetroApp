@@ -44,6 +44,9 @@ module.exports.login = async (req, res, next) => {
     }
 
     const token = jwt.sign({_id: existedUser._id}, process.env.SECRET_TOKEN);
-    res.header('auth-token', token).send(token);
+    res.header('auth-token', token).json({
+        _id: existedUser._id,
+        token: token
+    });
 
 }

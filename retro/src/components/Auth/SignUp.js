@@ -7,7 +7,8 @@ export default function SignUp() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isSignedUp, setIsSignedUp] = useState(false);
+  const [error, setError] = useState("");
 
   const url = `http://localhost:3000/register`;
 
@@ -25,20 +26,24 @@ export default function SignUp() {
     })
       .then((response) => response.json())
       .then((data) => {
-        // console.log("Success:", data);
-        setIsLoggedIn(!isLoggedIn);
+        setIsSignedUp(!isSignedUp);
       })
       .catch((error) => {
-        console.error("Error:", error);
+        setError(error);
       });
   };
 
   return (
     <>
-      {isLoggedIn ? (
+      {isSignedUp ? (
         <Redirect to="/login" />
       ) : (
-        <div className="auth-bgr d-flex align-items-center">
+        <div className="auth-bgr d-flex flex-column align-items-center">
+          {error && <Row>
+            <div class="alert alert-danger mt-3" role="alert">
+              {error}
+            </div>
+          </Row>}
           <Row className="w-75 mx-auto py-5 d-flex align-items-center">
             <Col className="col-sm-6 col-12 pr-0">
               <div className="sign-form px-5">

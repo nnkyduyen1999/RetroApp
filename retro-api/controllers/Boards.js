@@ -8,8 +8,6 @@ module.exports.getAllBoards = async (req, res, next) => {
     const boardFromDB = await Boards.find();
     res.json(boardFromDB);
   } catch (err) {
-    console.log(err);
-    console.log("error");
     res.send(err);
   }
 };
